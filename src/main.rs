@@ -3,7 +3,6 @@ use std::{println};
 use reqwest::{self, header::{CONTENT_TYPE, ACCEPT}};
 use dotenv::dotenv;
 use serde::{Deserialize, Serialize};
-
 use rand::{distributions::Uniform, prelude::Distribution};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -62,9 +61,9 @@ async fn main() {
 fn print_random_game(games: Vec<&Games>) {
     let mut rng = rand::thread_rng();
     let randomizer = Uniform::from(1..games.len());
-    let game1 = games[randomizer.sample(&mut rng)];
-    let game2 = games[randomizer.sample(&mut rng)];
-    let game3 = games[randomizer.sample(&mut rng)];
+    let game1: &Games = &games[randomizer.sample(&mut rng)];
+    let game2: &Games = &games[randomizer.sample(&mut rng)];
+    let game3: &Games = &games[randomizer.sample(&mut rng)];
     println!("Games you should play:");
     println!("Game 1: {}. You currently have {} minutes in it.", game1.name, game1.playtime_forever);
     println!("Game 2: {}. You currently have {} minutes in it.", game2.name, game2.playtime_forever);
